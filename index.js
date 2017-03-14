@@ -1,5 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 var app = express();
 var users = [
@@ -9,6 +10,8 @@ var users = [
 ] 
 
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded( {extended: true} ));
 
 app.get('/users', (req, res) => {
     req.query.limit = req.query.limit || 10;
@@ -25,8 +28,16 @@ app.get('/users/:id', (req, res) => {
     
     const user = users.filter((user) => user.id === id)[0];
     if(!user) return res.status(404).end();
-    
+
     res.json(user);
+});
+
+app.post('/users', (req, res) => {
+    const name = req.body.name;
+    const id = Date.now();
+    const user = {id, name};
+    users.push(user);
+    res.status(201).json(user);
 })
 
 app.listen(3000, function () {
