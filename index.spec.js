@@ -36,3 +36,16 @@ describe('GET /users는 ', () => {
     });
 
 })
+
+describe('GET /users/1은 ', () => {
+    describe('성공시 ', () => {
+        it('id가 1인 user의 객체를 반환한다', () => {
+            request(app)
+                .get('/users/1')
+                .end((err, res) => {
+                    res.body.should.have.property('id', 1);
+                    done();
+                })
+        })
+    })
+})
