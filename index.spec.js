@@ -63,7 +63,7 @@ describe('GET /users/1은 ', () => {
 })
 
 describe('POST /users는 ', () => {
-    let name = 'daniel'
+    let name = 'daniel';
     let body;
     before(done => {
          request(app)
@@ -73,8 +73,8 @@ describe('POST /users는 ', () => {
                 .end((err, res) => {
                     body = res.body;
                     done();
-                })
-    })
+                });
+    });
 
     describe('성공시 ', () => {
         it('생성된 유저 객체를 반환한다', done => {
@@ -85,5 +85,22 @@ describe('POST /users는 ', () => {
             body.should.have.property('name', name);
             done();
         })
-    })
+    });
+
+    describe('실패시 ', () => {
+        it('name 파라메터 누락시 400을 반환환다', done => {
+            request(app)
+                .post('/users')
+                .send({})
+                .expect(400)
+                .end(done);
+        });
+        it('name이 중복일 경우 409를 반환한다', done => {
+            request(app)
+                .post('/users')
+                .send({name: 'daniel'})
+                .expect(409)
+                .end(done);
+        })
+    });
 }) 
