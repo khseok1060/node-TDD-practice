@@ -1,22 +1,10 @@
-import express from 'express';
-import morgan from 'morgan';
+var express = require('express');
+var app = express();
 
-const app = express();
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-function commonmw (req, res, next) {
-    console.log('middlewr');
-    next(new Error('error occurred'));
-}
-
-function errormw (err, req, res, next) {
-    console.log(err.message);
-    next();
-}
-
-app.use(commonmw);
-app.use(errormw);
-app.use(morgan('dev'));
-
-app.listen(3000, function(){
-    console.log('Server is listening')
-})
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
