@@ -11,7 +11,28 @@ describe('GET /users는 ', () => {
                 .end((err, res) => {
                     res.body.should.be.instanceOf(Array);
                     done();
-                })
-        })
-    })
+                });
+        });
+
+        it('최대 limit 개수만큼 응답한다', (done) => {
+            request(app)
+                .get('/users?limit=2')
+                .end((err, res) => {
+                    res.body.should.have.lengthOf(2);
+                    done();
+                });
+        });
+    });
+    
+    describe('실패시 ', () => {
+        it('limit이 숫자형이 아니면 400을 응답한다', () => {
+            request(app)
+                .get('/users?limit=one')
+                .expect(400)
+                .end((err, res) => {
+                    done();
+                });
+        });
+    });
+
 })
