@@ -9,7 +9,7 @@
     "morgan": "^1.8.1"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha index.spec.js -w",
+    "test": "mocha api/user/user.spec.js -w",
     "start": "node index.js"
   },
   "repository": {
