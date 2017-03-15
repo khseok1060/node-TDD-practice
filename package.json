@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "sequelize": "^3.30.2",
+    "sqlite3": "^3.1.8"
   },
   "scripts": {
     "test": "mocha api/user/user.spec.js -w",
