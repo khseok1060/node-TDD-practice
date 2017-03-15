@@ -1,11 +1,11 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    db: './user.sqlite'
-});
+const app = require('../index');
+const syncDb = require('./sync-db')
 
-const User = sequelize.define('User', {
-    name: Sequelize.STRING
-});
+syncDb().then(_ => {
+    console.log('Sync Database')
+    app.listen(3000, function () {
+        console.log('Example app listening on port 3000!');
+    });
+})
 
-module.exports = { Sequelize, sequelize, User };
+

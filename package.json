@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "mocha api/user/user.spec.js -w",
-    "start": "node index.js"
+    "start": "node bin/www.js"
   },
   "repository": {
     "type": "git",
