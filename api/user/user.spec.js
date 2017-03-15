@@ -42,7 +42,7 @@ describe('GET /users는 ', () => {
 
 describe('GET /users/:id은 ', () => {
     describe('성공시 ', () => {
-        it('id가 1인 user의 객체를 반환한다', () => {
+        it('id가 1인 user의 객체를 반환한다', done => {
             request(app)
                 .get('/users/1')
                 .end((err, res) => {

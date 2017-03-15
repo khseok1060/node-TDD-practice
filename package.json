@@ -11,7 +11,7 @@
     "sqlite3": "^3.1.8"
   },
   "scripts": {
-    "test": "mocha api/user/user.spec.js -w",
+    "test": "NODE_ENV=test mocha api/user/user.spec.js -w",
     "start": "node bin/www.js"
   },
   "repository": {

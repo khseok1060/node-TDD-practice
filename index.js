@@ -5,7 +5,7 @@ var user = require('./api/user');
 
 var app = express();
  
-if(process.env.NODE_DEV !== 'test') {
+if(process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
